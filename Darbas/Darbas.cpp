@@ -1,58 +1,61 @@
-#include <iostream>
-#include <iomanip>
-#include <string>
+#include "My_libs.h"
+#include "Libas.h"
+#include <cstdio>
+
 
 using std::cout;
 using std::cin;
 using std::endl;
-using std::string;
 using std::setw;
 using std::left;
-using std::setprecision;
-
-struct studentas {
-    string vardas, pavarde;
-    float nd[10]{};
-    float egzam;
-    float galutinisVid;
-    
-};
-
-void pild(studentas& kint);
-void printas(studentas& kin);
+using std::exception;
 
 int main()
 {
-    studentas studentai[10];
+    vector<studentas> studentai;
     int k;
-    cout << "Kiek studentu bus?";
-    cin >> k;
-    for (int i = 0; i < k; i++)
-        pild(studentai[i]);
-    cout << setw(20) << left << "Vardas" << setw(20) << left << "Pavarde" << setw(20) << left << "GalutinisVid" << endl;
-    for (int i = 0; i < k; i++)
-        printas(studentai[i]);
-}
-
-void pild(studentas& kint) {
-
-    int n;
-    cout << "Iveskite studento varda ir pavarde: ";
-    cin >> kint.vardas >> kint.pavarde;
-    cout << "Kiek nd bus?"; cin >> n;
-    cout << "Iveskite pazymius: " << endl;
-    float sum = 0, vid = 0;
-    for (int i = 0; i < n; i++) {
-        cin >> kint.nd[i];
-        sum += kint.nd[i];
-    }
-    vid = sum / n;
-    cout << "Iveskite egzamino bala: "; cin >> kint.egzam;
-    kint.galutinisVid = vid * 0.4 + 0.6 * kint.egzam;
-
-
-}
-void printas(studentas &kin) {
+    char answ, g;
+    string name;
+    srand(time(NULL));
     
-    cout << setw(20) << left << kin.vardas << setw(20) << left << kin.pavarde << setw(20) << left << setprecision(3) << kin.galutinisVid << endl;
+    cout << "Ar norite duomenis nuskaityti is failo? (Jei taip, iveskite 't', jei ne - bet koki simboli): ";
+    cin >> answ;
+    if (answ == 't') { 
+        cout << "\n" << endl;
+        
+        try{ 
+            nuskaitymas("studentai10000.txt"); 
+        }
+        
+
+        catch (exception& e) {
+            cout << "Failas neegzistuoja! Patikrinkite failo varda ir meginkite is naujo..." << endl;
+            exit(EXIT_FAILURE);
+        }
+    
+    }
+    else {
+        cout << "Iveskite studentu skaiciu: ";
+        
+        
+        tikrinimas(k);
+        for (int i = 0; i < k; i++) {
+            studentas temp;
+            pild(temp);
+            studentai.push_back(temp);
+        }
+        sort(studentai.begin(), studentai.end(), mycompare);
+        cout << "\n" << endl;
+        cout << setw(20) << left << "Vardas" << setw(20) << left << "Pavarde" << setw(20) << left << "Galutinis(Vid.)/Galutinis(Med.)"<< endl;
+        for (int i = 0; i < k; i++)
+            printas(studentai[i]);
+    }
+    
+    system("pause");
+ 
 }
+
+
+    
+
+    
