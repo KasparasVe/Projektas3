@@ -24,7 +24,7 @@ int main()
         cout << "\n" << endl;
         
         try{ 
-            nuskaitymas("kursqiokai.txt"); 
+            nuskaitymas("studentai10000.txt"); 
         }
         
 
@@ -32,10 +32,7 @@ int main()
             cout << "Failas neegzistuoja! Patikrinkite failo varda ir meginkite is naujo..." << endl;
             exit(EXIT_FAILURE);
         }
-
-        
-        
-          
+    
     }
     else {
         cout << "Iveskite studentu skaiciu: ";
