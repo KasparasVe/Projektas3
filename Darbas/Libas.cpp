@@ -1,4 +1,5 @@
 #include "Libas.h"
+#include "Timer.h"
 
 using std::cout;
 using std::cin;
@@ -13,6 +14,10 @@ using std::vector;
 using std::ifstream;
 using std::stringstream;
 using std::exception;
+
+
+
+
 
 void pild(studentas& kint) {
     float sum = 0, vid = 0, n, med;
@@ -123,40 +128,27 @@ float mediana(vector<float> vec) {
 void nuskaitymas(string read) {
     vector<string> sarasas;
     string eil;
+    vector<studentas> grupe;
+
 
     ifstream failas(read);
-    if (!failas) {
-        throw exception();
-    }
+
     while (failas) {
         if (!failas.eof()) {
-            getline(failas, eil);
+            std::getline(failas, eil);
             sarasas.push_back(eil);
         }
         else break;
     }
     failas.close();
 
-    
-    
-
-    
-
-    vector<studentas> grupe;
-
-
     for (int i = 0; i < sarasas.size() - 1;i++) {
         studentas tempas;
-        uzpildymas(tempas, sarasas[i + 1]);
+        uzpildymas(tempas, sarasas[i]);
         grupe.push_back(tempas);
 
     }
 
-    sort(grupe.begin(), grupe.end(), mycompare);
-    cout << setw(20) << left << "Vardas" << setw(20) << left << "Pavarde" << setw(20) << left << "Galutinis(Vid.)" << setw(20) << left << "Galutinis(Med.)" << endl;
-    for (auto s : grupe) {
-        printfile(s);
-    }
 
 }
 
@@ -221,4 +213,26 @@ void tikrinimas(int &a) {
         
     }
     while (cin.fail() == true);
+}
+
+
+void create_file(string name, float sk) {
+    std::random_device rd;
+    std::mt19937 mt(rd());
+    std::uniform_int_distribution<int> dist(1, 10);
+
+    std::ofstream failas;
+    failas.open(name);
+
+    for (int i = 1;i < sk + 1;i++) {
+        int nd1 = dist(mt);
+        int nd2 = dist(mt);
+        int nd3 = dist(mt);
+        int nd4 = dist(mt);
+        int nd5 = dist(mt);
+        int egz = dist(mt);
+        failas << "Vardas" << i << "    Pavarde" << i << "        " << setw(10) << left << nd1 << setw(10) << left << nd2 << setw(10) << left << nd3 << setw(10) << left << nd4 << setw(10) << left << nd5 << setw(10) << left << egz << "\n";
+    }
+    failas.close();
+
 }

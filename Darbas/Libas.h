@@ -22,3 +22,8 @@ void uzpildymas(studentas& k, string eilute);
 bool mycompare(studentas a, studentas b);
 void printfile(studentas& stud);
 void tikrinimas(int &a);
+
+
+
+void create_file(string name, float sk);
+

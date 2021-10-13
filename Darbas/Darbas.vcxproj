@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClInclude Include="Libas.h" />
     <ClInclude Include="My_libs.h" />
+    <ClInclude Include="Timer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
