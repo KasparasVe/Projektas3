@@ -15,8 +15,9 @@ using std::ifstream;
 using std::stringstream;
 using std::exception;
 
-
-
+vector<studentas> grupe;
+vector<studentas> nabagai;
+vector<studentas> protingi;
 
 
 void pild(studentas& kint) {
@@ -104,7 +105,6 @@ void pild(studentas& kint) {
         kint.galutinisMed = med * 0.4 + 0.6 * kint.egzam;
     }
 }
-
 void printas(studentas& kin) {
 
 
@@ -114,7 +114,6 @@ void printas(studentas& kin) {
     else
         cout << setw(20) << left << kin.vardas << setw(20) << left << kin.pavarde << setw(20) << left << setprecision(3) << kin.galutinisMed << endl;
 }
-
 float mediana(vector<float> vec) {
     typedef vector<float>::size_type vecSize;
     vecSize size = vec.size();
@@ -124,12 +123,10 @@ float mediana(vector<float> vec) {
     vecSize vid = size / 2;
     return size % 2 == 0 ? (vec[vid] + vec[vid - 1]) / 2 : vec[vid];
 }
-
 void nuskaitymas(string read) {
     vector<string> sarasas;
     string eil;
-    vector<studentas> grupe;
-
+    
 
     ifstream failas(read);
 
@@ -148,33 +145,23 @@ void nuskaitymas(string read) {
         grupe.push_back(tempas);
 
     }
+    
 
 
 }
-
 void uzpildymas(studentas& k, string eilute) {
     string str = eilute;
     stringstream s(str);
     float sum = 0, vid, med;
 
 
-    float nd1, nd2, nd3, nd4, nd5, nd6, nd7, nd8, nd9, nd10, nd11, nd12, nd13, nd14, nd15, egzam;
-    s >> k.vardas >> k.pavarde >> nd1 >> nd2 >> nd3 >> nd4 >> nd5 >> nd6 >> nd7 >> nd8 >> nd9 >> nd10 >> nd11 >> nd12 >> nd13 >> nd14 >> nd15 >> k.egzam;
+    float nd1, nd2, nd3, nd4, nd5, egzam;
+    s >> k.vardas >> k.pavarde >> nd1 >> nd2 >> nd3 >> nd4 >> nd5 >> k.egzam;
     k.nd.push_back(nd1);
     k.nd.push_back(nd2);
     k.nd.push_back(nd3);
     k.nd.push_back(nd4);
     k.nd.push_back(nd5);
-    k.nd.push_back(nd6);
-    k.nd.push_back(nd7);
-    k.nd.push_back(nd8);
-    k.nd.push_back(nd9);
-    k.nd.push_back(nd10);
-    k.nd.push_back(nd11);
-    k.nd.push_back(nd12);
-    k.nd.push_back(nd13);
-    k.nd.push_back(nd14);
-    k.nd.push_back(nd15);
 
     for (float p : k.nd) {
         sum += p;
@@ -188,15 +175,12 @@ void uzpildymas(studentas& k, string eilute) {
     k.galutinisMed = med * 0.4 + 0.6 * k.egzam;
 
 }
-
 bool mycompare(studentas a, studentas b) {
     return a.vardas.compare(b.vardas) < 0;
 }
-
 void printfile(studentas& stud) {
     cout << setw(20) << left << stud.vardas << setw(20) << left << stud.pavarde << setw(20) << left << setprecision(3) << stud.galutinisVid << setw(20) << left << setprecision(3) << stud.galutinisMed << endl;
 }
-
 void tikrinimas(int &a) {
     cin >> a;
     do {
@@ -214,6 +198,7 @@ void tikrinimas(int &a) {
     }
     while (cin.fail() == true);
 }
+
 
 
 void create_file(string name, float sk) {
@@ -235,4 +220,28 @@ void create_file(string name, float sk) {
     }
     failas.close();
 
+}
+void padalijimas(vector<studentas>& vec) {
+
+    for (auto s : vec) {
+        if (s.galutinisVid < 5) {
+            nabagai.push_back(s);
+        }
+        else {
+            protingi.push_back(s);
+        }
+
+    }
+
+}
+void isvedimas(vector<studentas>& vec, string pav) {
+    std::ofstream failas;
+    failas.open(pav);
+    failas << setw(20) << left << "Vardas" << setw(20) << left << "Pavarde" << setw(20) << left << "Galutinis balas" << "\n";
+    for (int i = 0; i < vec.size();i++) {
+
+        failas << setw(20) << left << vec[i].vardas << setw(20) << left << vec[i].pavarde << setw(20) << left << vec[i].galutinisVid << "\n";
+    }
+
+    failas.close();
 }

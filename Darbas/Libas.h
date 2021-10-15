@@ -14,6 +14,10 @@ struct studentas {
 
 };
 
+extern vector<studentas> grupe;
+extern vector<studentas> nabagai;
+extern vector<studentas> protingi;
+
 void pild(studentas& kint);
 void printas(studentas& kin);
 float mediana(vector<float> vec);
@@ -25,5 +29,10 @@ void tikrinimas(int &a);
 
 
 
+
+
+
 void create_file(string name, float sk);
+void padalijimas(vector<studentas>& vec);
+void isvedimas(vector<studentas>& vec, string pav);
 
