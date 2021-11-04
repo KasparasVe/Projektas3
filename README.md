@@ -14,7 +14,7 @@ V0.4 atnaujinimas:
 * main funkcijoje atlikti 5 testai su skirtingo dydžio failais ir kiekvieno žingsnio spartos matavimu.
 
 V0.5:
-* visi <studentas> tipo vektoriai pakeisti į listus.
+* visi studentas tipo vektoriai pakeisti į listus.
 * funkcijos pakoreguotos, kad veiktų su listais.
 * atlikti tie patys testai, norint ištirti, ar bus spartos skirtumas vektorius pakeitus listais.
 
