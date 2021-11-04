@@ -14,10 +14,11 @@ using std::vector;
 using std::ifstream;
 using std::stringstream;
 using std::exception;
+using std::list;
 
-vector<studentas> grupe;
-vector<studentas> nabagai;
-vector<studentas> protingi;
+list<studentas> grupe;
+list<studentas> nabagai;
+list<studentas> protingi;
 
 
 void pild(studentas& kint) {
@@ -123,58 +124,6 @@ float mediana(vector<float> vec) {
     vecSize vid = size / 2;
     return size % 2 == 0 ? (vec[vid] + vec[vid - 1]) / 2 : vec[vid];
 }
-void nuskaitymas(string read) {
-    vector<string> sarasas;
-    string eil;
-    
-
-    ifstream failas(read);
-
-    while (failas) {
-        if (!failas.eof()) {
-            std::getline(failas, eil);
-            sarasas.push_back(eil);
-        }
-        else break;
-    }
-    failas.close();
-
-    for (int i = 0; i < sarasas.size() - 1;i++) {
-        studentas tempas;
-        uzpildymas(tempas, sarasas[i]);
-        grupe.push_back(tempas);
-
-    }
-    
-
-
-}
-void uzpildymas(studentas& k, string eilute) {
-    string str = eilute;
-    stringstream s(str);
-    float sum = 0, vid, med;
-
-
-    float nd1, nd2, nd3, nd4, nd5, egzam;
-    s >> k.vardas >> k.pavarde >> nd1 >> nd2 >> nd3 >> nd4 >> nd5 >> k.egzam;
-    k.nd.push_back(nd1);
-    k.nd.push_back(nd2);
-    k.nd.push_back(nd3);
-    k.nd.push_back(nd4);
-    k.nd.push_back(nd5);
-
-    for (float p : k.nd) {
-        sum += p;
-    }
-
-
-    vid = sum / k.nd.size();
-    med = mediana(k.nd);
-
-    k.galutinisVid = 0.4 * vid + 0.6 * k.egzam;
-    k.galutinisMed = med * 0.4 + 0.6 * k.egzam;
-
-}
 bool mycompare(studentas a, studentas b) {
     return a.vardas.compare(b.vardas) < 0;
 }
@@ -200,7 +149,51 @@ void tikrinimas(int &a) {
 }
 
 
+void nuskaitymas(string read) {
 
+    string eil;
+    
+
+    ifstream failas(read);
+    if (!failas) {
+        throw exception();
+    }
+    while (failas) {
+        if (!failas.eof()) {
+            std::getline(failas, eil);
+            stringstream s(eil);
+            studentas tempas;
+            float nd1, nd2, nd3, nd4, nd5, egzam;
+            float sum = 0, vid;
+            s >> tempas.vardas >> tempas.pavarde >> nd1 >> nd2 >> nd3 >> nd4 >> nd5 >> tempas.egzam;
+            tempas.nd.push_back(nd1);
+            tempas.nd.push_back(nd2);
+            tempas.nd.push_back(nd3);
+            tempas.nd.push_back(nd4);
+            tempas.nd.push_back(nd5);
+
+
+            for (float p : tempas.nd) {
+                sum += p;
+            }
+
+            float med = mediana(tempas.nd);
+
+            vid = sum / tempas.nd.size();
+
+            tempas.galutinisVid = 0.4 * vid + 0.6 * tempas.egzam;
+            tempas.galutinisMed = med * 0.4 + 0.6 * tempas.egzam;
+            grupe.push_back(tempas);
+        }
+        else break;
+    }
+    failas.close();
+
+    grupe.pop_back();
+    //sort(grupe.begin(), grupe.end(), mycompare);
+    
+
+}
 void create_file(string name, float sk) {
     std::random_device rd;
     std::mt19937 mt(rd());
@@ -221,26 +214,26 @@ void create_file(string name, float sk) {
     failas.close();
 
 }
-void padalijimas(vector<studentas>& vec) {
+void padalijimas(list<studentas>& lst) {
 
-    for (auto s : vec) {
-        if (s.galutinisVid < 5) {
-            nabagai.push_back(s);
+    for (auto p : lst) {
+        if (p.galutinisVid < 5) {
+            nabagai.push_back(p);
         }
         else {
-            protingi.push_back(s);
+            protingi.push_back(p);
         }
-
     }
 
+
 }
-void isvedimas(vector<studentas>& vec, string pav) {
+void isvedimas(list<studentas>& lst, string pav) {
     std::ofstream failas;
     failas.open(pav);
     failas << setw(20) << left << "Vardas" << setw(20) << left << "Pavarde" << setw(20) << left << "Galutinis balas" << "\n";
-    for (int i = 0; i < vec.size();i++) {
+    for (auto p:lst) {
 
-        failas << setw(20) << left << vec[i].vardas << setw(20) << left << vec[i].pavarde << setw(20) << left << vec[i].galutinisVid << "\n";
+        failas << setw(20) << left << p.vardas << setw(20) << left << p.pavarde << setw(20) << left << p.galutinisVid << "\n";
     }
 
     failas.close();
