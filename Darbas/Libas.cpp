@@ -1,5 +1,6 @@
 #include "Libas.h"
 #include "Timer.h"
+#include <numeric>
 
 using std::cout;
 using std::cin;
@@ -152,7 +153,7 @@ void tikrinimas(int &a) {
 void nuskaitymas(string read) {
 
     string eil;
-    
+    list<string> eilutes;
 
     ifstream failas(read);
     if (!failas) {
@@ -161,37 +162,49 @@ void nuskaitymas(string read) {
     while (failas) {
         if (!failas.eof()) {
             std::getline(failas, eil);
-            stringstream s(eil);
-            studentas tempas;
-            float nd1, nd2, nd3, nd4, nd5, egzam;
-            float sum = 0, vid;
-            s >> tempas.vardas >> tempas.pavarde >> nd1 >> nd2 >> nd3 >> nd4 >> nd5 >> tempas.egzam;
-            tempas.nd.push_back(nd1);
-            tempas.nd.push_back(nd2);
-            tempas.nd.push_back(nd3);
-            tempas.nd.push_back(nd4);
-            tempas.nd.push_back(nd5);
+            eilutes.push_back(eil);
 
-
-            for (float p : tempas.nd) {
-                sum += p;
-            }
-
-            float med = mediana(tempas.nd);
-
-            vid = sum / tempas.nd.size();
-
-            tempas.galutinisVid = 0.4 * vid + 0.6 * tempas.egzam;
-            tempas.galutinisMed = med * 0.4 + 0.6 * tempas.egzam;
-            grupe.push_back(tempas);
         }
         else break;
+
     }
     failas.close();
 
-    grupe.pop_back();
-    //sort(grupe.begin(), grupe.end(), mycompare);
-    
+    eilutes.pop_back();
+
+
+    for (auto eil : eilutes) {
+        stringstream s(eil);
+        studentas tempas;
+        float sum, vid;
+        s >> tempas.vardas >> tempas.pavarde;
+        int k;
+        while (s >> k) {
+            tempas.nd.push_back(k);
+
+        }
+
+        tempas.egzam = tempas.nd.back();
+        tempas.nd.pop_back();
+
+
+        sum = std::accumulate(tempas.nd.begin(), tempas.nd.end(), 0);
+
+
+        vid = sum / tempas.nd.size();
+
+        float med = mediana(tempas.nd);
+
+
+
+        tempas.galutinisVid = 0.4 * vid + 0.6 * tempas.egzam;
+        tempas.galutinisMed = med * 0.4 + 0.6 * tempas.egzam;
+        grupe.push_back(tempas);
+
+
+    }
+
+
 
 }
 void create_file(string name, float sk) {
