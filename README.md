@@ -39,6 +39,6 @@ Nuskaitymas: 6.61892 s | Padalijimas: 0.310551 s | Visas testo laikas: 14.0325 s
 **SANTYKIS(vektoriu_laikas/listu_laikas):**
 Nuskaitymas: 1.06 | Padalijimas: 0.93 | Visas testo laikas: 1.35 
 
-**IšVADOS**: tiek padalijimas, tiek nuskaitymas dažniausiai greičiau atliekamas su listais. Pagal visą testo laiką, testai su listais veikia apie 30-50% greičiau už testus su vektoriais.
+**IŠVADOS**: tiek padalijimas, tiek nuskaitymas dažniausiai greičiau atliekamas su listais. Pagal visą testo laiką, testai su listais veikia apie 30-50% greičiau už testus su vektoriais.
 
 
