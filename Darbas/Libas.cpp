@@ -131,7 +131,7 @@ float mediana(vector<float> vec) {
     return size % 2 == 0 ? (vec[vid] + vec[vid - 1]) / 2 : vec[vid];
 }
 bool mycompare(studentas a, studentas b) {
-    return a.vardas.compare(b.vardas) < 0;
+    return a.galutinisVid>b.galutinisVid;
 }
 void printfile(studentas& stud) {
     cout << setw(20) << left << stud.vardas << setw(20) << left << stud.pavarde << setw(20) << left << setprecision(3) << stud.galutinisVid << setw(20) << left << setprecision(3) << stud.galutinisMed << endl;
@@ -155,6 +155,10 @@ void tikrinimas(int &a) {
 }
 bool func(studentas st) {
     return st.galutinisVid < 5;
+
+}
+bool pred(studentas st) {
+    return st.galutinisVid >= 5;
 
 }
 void create_file(string name, float sk) {
@@ -259,6 +263,16 @@ void padalijimas2(vector<studentas>& vec) {
     }
     vec.erase(remove_if(vec.begin(), vec.end(), func), vec.end());
 }
+void padalijimas3(vector<studentas>& vec){
+    std::partition(grupe_vec.begin(), grupe_vec.end(), pred);
+
+    vector<studentas>::iterator it = std::partition_point(grupe_vec.begin(), grupe_vec.end(), pred);
+    for (it;it != grupe_vec.end();it++) {
+        nabagai_vec.push_back(*it);
+    }
+
+    grupe_vec.erase(std::partition_point(grupe_vec.begin(), grupe_vec.end(), pred), grupe_vec.end());
+}
 void isvedimas(vector<studentas>& vec, string pav) {
     std::ofstream failas;
     failas.open(pav);
@@ -270,6 +284,7 @@ void isvedimas(vector<studentas>& vec, string pav) {
 
     failas.close();
 }
+
 
 //Listams:
 void nuskaitymas_lst(string read) {

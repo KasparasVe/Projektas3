@@ -40,7 +40,9 @@ void isvedimas(list<studentas>& lst, string pav);
 
 void padalijimas2(vector<studentas>& vec);
 void padalijimas2(list<studentas>& lst);
+void padalijimas3(vector<studentas>& vec);
 
 bool func(studentas st);
+bool pred(studentas st);
 
 
