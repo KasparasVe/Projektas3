@@ -37,7 +37,7 @@ v0.5:
 * atlikti testai su skirtingo dydžio failas, norint ištirti spartos skirtumą tarp v0.4 ir v0.5
 * REZULTATAI: tiek padalijimas, tiek nuskaitymas dažniausiai greičiau atliekamas su listais. Pagal visą testo laiką, testai su listais veikia apie 30-50% greičiau už testus su vektoriais.
 
-v0.1:
+v1.0:
 * sukurtas papildomas studentų padalijimo metodas
 * funkcijos pakoreguotos, kad veiktų tiek su vektoriais, tiek su listais
 * atliktas testas su vektoriais ir su listais, kurio metu tiriama, kaip pasikeis studentų padalijimo sparta, priklausomai nuo naudojamo metodo
