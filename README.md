@@ -43,7 +43,25 @@ v1.0:
 * atliktas testas su vektoriais ir su listais, kurio metu tiriama, kaip pasikeis studentų padalijimo sparta, priklausomai nuo naudojamo metodo
 * sukurtas trečias dalijimo metodas, naudojant std::partition
 * atliktas testas, lyginintis trečio padalijimo metodo spartą su ankstesniais buvusiais dviem metodais
-* REZULTATAI: su vektoriais 2 padalijimo metodas veikia greičiau už 1, su listais - lėčiau. 3 padalijimo metodas su vektoriais veikia greičiau nei 1 ir 2.
 
 
+<h3>REZULTATAI SU FIKSUOTU 100 000 STUDENTŲ FAILU:</h3>
 
+**NAUDOJANT VEKTORIUS:**<br>
+Padalijimas 1 budu uztruko: 0.0496662<br>
+Padalijimas 2 budu uztruko: 0.0371622<br>
+Santykis t1/t2: 1.33647<br>
+
+**NAUDOJANT LISTUS:**<br>
+Padalijimas 1 budu uztruko: 0.0275443<br>
+Padalijimas 2 budu uztruko: 0.0315684<br>
+Santykis t1/t2: 0.872528<br>
+
+**3 STRATEGIJA, NAUDOJANT VEKTORIUS:**<br>
+padalijimas 1 budu uztruko: 0.0378509 s<br>
+padalijimas 2 budu uztruko: 0.0333835 s<br>
+padalijimas 3 budu uztruko: 0.0146708 s<br>
+Santykis t1/t3: 2.58002<br>
+Santykis t2/t3: 2.27551<br>
+
+**IŠVADOS:** su vektoriais 2 padalijimo metodas veikia greičiau už 1, su listais - lėčiau. 3 padalijimo metodas su vektoriais veikia greičiau nei 1 ir 2.
