@@ -13,7 +13,22 @@ Studentas::Studentas(string v, string p, int e, float g) {
     egzaminas_ = e;
     galutinisVid_ = g;
 }
-
+Studentas::Studentas(const Studentas& st) {
+    vardas_ = st.vardas_;
+    pavarde_ = st.pavarde_;
+    egzaminas_ = st.egzaminas_;
+    galutinisVid_ = st.galutinisVid_;
+    nd_ = st.nd_;
+}
+Studentas& Studentas::operator=(const Studentas& st) {
+    if (&st == this) return *this;
+    vardas_ = st.vardas_;
+    pavarde_ = st.pavarde_;
+    egzaminas_ = st.egzaminas_;
+    galutinisVid_ = st.galutinisVid_;
+    nd_ = st.nd_;
+    return *this;
+}
 
 void Studentas::setVardas(string a) { vardas_ = a; }
 void Studentas::setPavarde(string b) { pavarde_ = b; }
@@ -173,5 +188,11 @@ bool Studentas::pred_(const Studentas &st) {
 
 }
 
-
+bool operator==(Studentas& a, Studentas& b) {
+    return a.pavarde_ == b.pavarde_;
+}
+std::ostream& operator<<(std::ostream& out, const Studentas& a) {
+    out << std::setw(20) << std::left << a.vardas_ << std::setw(20) << std::left << a.pavarde_ << std::setw(20) << std::left << std::setprecision(3) << a.galutinisVid_ << endl;
+    return out;
+}
 

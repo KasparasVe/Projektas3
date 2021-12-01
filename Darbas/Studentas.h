@@ -24,7 +24,8 @@ public:
 		galutinisVid_ = 0;
 	}
 	Studentas(string, string, int, float);
-	
+	Studentas(const Studentas& st);
+	Studentas& operator=(const Studentas& st);
 
 	inline string vardas() const { return vardas_; }
 	inline string pavarde() const { return pavarde_; }
@@ -37,7 +38,7 @@ public:
 	void setEgzaminas(int);
 	void setND(vector<float>);
 	void setGalutinisVid(float);
-	
+	~Studentas() {}
 	
 	void pild();
 	float vidurkis();
@@ -46,6 +47,7 @@ public:
 	static void padalijimas3_(vector<Studentas>& vec);
 	static bool pred_(const Studentas &st);
 
-	
+	friend std::ostream& operator<<(std::ostream& out, const Studentas& a);
+	friend bool operator==(Studentas& a, Studentas &b);
 };
 

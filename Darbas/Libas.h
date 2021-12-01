@@ -51,4 +51,3 @@ bool pred(studentas st);
 void testas();
 void uzpildymas();
 
-
