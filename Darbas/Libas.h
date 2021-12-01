@@ -1,5 +1,6 @@
 #pragma once
 #include "My_Libs.h"
+#include "Studentas.h"
 
 using std::string;
 using std::vector;
@@ -18,6 +19,8 @@ struct studentas {
 extern vector<studentas> grupe_vec;
 extern vector<studentas> nabagai_vec;
 extern vector<studentas> protingi_vec;
+extern vector<Studentas> grupe_vec_;
+extern vector <Studentas> nabagai_vec_;
 
 extern list<studentas> grupe_lst;
 extern list<studentas> nabagai_lst;
@@ -44,5 +47,8 @@ void padalijimas3(vector<studentas>& vec);
 
 bool func(studentas st);
 bool pred(studentas st);
+
+void testas();
+void uzpildymas();
 
 
