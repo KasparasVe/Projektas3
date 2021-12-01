@@ -10,4 +10,6 @@ Darbas/Libas.cpp
 Darbas/Libas.h
 Darbas/My_libs.h
 Darbas/Timer.h
+Darbas/Studentas.h
+Darbas/Studentas.cpp
 )
