@@ -384,11 +384,19 @@ void isvedimas(list<studentas>& lst, string pav) {
     failas.close();
 }
 
-void testas() {
+void testas(string name) {
     cout << "NAUDOJANT STRUKTURA:" << endl << endl;
     Timer t0;
     Timer t;
-    nuskaitymas_vec("stud100000.txt");
+    try {
+        nuskaitymas_vec(name);
+    }
+
+
+    catch (exception& e) {
+        cout << "Failas neegzistuoja! Patikrinkite failo varda ir meginkite is naujo..." << endl;
+        exit(EXIT_FAILURE);
+    }
     float t1 = t.elapsed();
     cout << "Nuskaitymas uztruko: " << t1 << " s" << endl;
     t.reset();
@@ -404,7 +412,16 @@ void testas() {
     cout << endl << "NAUDOJANT KLASE:" << endl << endl;
     t0.reset();
     t.reset();
-    Studentas::nuskaitymas_vec_("stud100000.txt");
+    try {
+        Studentas::nuskaitymas_vec_(name);
+    }
+
+
+    catch (exception& e) {
+        cout << "Failas neegzistuoja! Patikrinkite failo varda ir meginkite is naujo..." << endl;
+        exit(EXIT_FAILURE);
+    }
+    
     float t1_ = t.elapsed();
     cout << "Nuskaitymas uztruko: " << t1_ << " s" << endl;
     t.reset();

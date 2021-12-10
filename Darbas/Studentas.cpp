@@ -7,10 +7,9 @@ using std::endl;
 using std::string;
 using std::vector;
 
-Studentas::Studentas(string v, string p, int e, float g) {
+Studentas::Studentas(string v, string p, float g) {
     vardas_ = v;
     pavarde_ = p;
-    egzaminas_ = e;
     galutinisVid_ = g;
 }
 Studentas::Studentas(const Studentas& st) {
@@ -187,8 +186,20 @@ bool Studentas::pred_(const Studentas &st) {
     return st.galutinisVid_ >= 5;
 
 }
+void  Studentas::isvedimas_(vector<Studentas>& vec, string pav) {
+    std::ofstream failas;
+    failas.open(pav);
+    failas << std::setw(20) << std::left << "Vardas" << std::setw(20) << std::left << "Pavarde" << std::setw(20) << std::left << "Galutinis balas" << "\n";
+    for (auto p : vec) {
 
-bool operator==(Studentas& a, Studentas& b) {
+        failas << std::setw(20) << std::left << p.vardas_ << std::setw(20) << std::left << p.pavarde_ << std::setw(20) << std::left << p.galutinisVid_ << "\n";
+    }
+
+    failas.close();
+
+}
+
+bool operator==(const Studentas& a, const Studentas& b) {
     return a.pavarde_ == b.pavarde_;
 }
 std::ostream& operator<<(std::ostream& out, const Studentas& a) {
