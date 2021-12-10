@@ -8,3 +8,7 @@
 **v1.2:**
 * pridėtas destruktorius, copy konstruktorius, priskyrimo operatorius
 * pridėtas išvedimo operatorius<<, lygu operatorius==
+
+**v1.5:**
+* sukurta abstrakti bazinė klasė Zmogus
+* klasė Studentas paversta klasės Zmogus išverstine klase
