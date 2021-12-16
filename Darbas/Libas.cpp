@@ -439,6 +439,7 @@ void testas(string name) {
 void uzpildymas() {
     char a;
     string fileName;
+
     cout << "Ar norite nuskaityti faila? Irasykite t, jei taip, n, jei ne: ";
     cin >> a;
     if (a == 't') {

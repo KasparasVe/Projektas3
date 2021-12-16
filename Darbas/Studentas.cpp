@@ -200,7 +200,7 @@ void  Studentas::isvedimas_(vector<Studentas>& vec, string pav) {
 }
 
 bool operator==(const Studentas& a, const Studentas& b) {
-    return a.pavarde_ == b.pavarde_;
+    return a.pavarde_ == b.pavarde_ && a.vardas_ == b.vardas_;
 }
 std::ostream& operator<<(std::ostream& out, const Studentas& a) {
     out << std::setw(20) << std::left << a.vardas_ << std::setw(20) << std::left << a.pavarde_ << std::setw(20) << std::left << std::setprecision(3) << a.galutinisVid_ << endl;

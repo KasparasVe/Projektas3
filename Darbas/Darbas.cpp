@@ -16,14 +16,23 @@ using std::left;
 int main()
 {
    
-
-    //Zmogus z;
-
     char ats;
     cout << "Ar norite atlikti testa STRUKTURAvsKLASE? Irasykite t, jei taip, n, jei ne: ";
     cin >> ats;
     if (ats == 't') { testas("stud100000.txt"); }
-    else { uzpildymas(); }
+    else {
+        int sz;
+        string pvd;
+        char ats_;
+        cout << "Ar norite atsitiktinai sugeneruoti studentu faila? Irasykite t, jei taip, n, jei ne: ";
+        cin >> ats_;
+        if (ats_ == 't') {
+            cout << "Iveskite failo pavadinima (su .txt) ir dydi: ";
+            cin >> pvd >> sz;
+            create_file(pvd, sz);
+        }
+        else { uzpildymas(); }
+    }
 
     system("pause");
 
